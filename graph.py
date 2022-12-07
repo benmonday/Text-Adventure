@@ -14,7 +14,7 @@ class Graph:
     def goNorth(self):
         if (self.currentRoom.north != None):
             self.setCurrentRoom(self.currentRoom.north)
-            print("* You move through the door to the North.")
+            print("\n* You move through the door to the North.")
             self.printStatus(self.currentRoom)
         else:
             print("There is no door to the North.")
@@ -22,7 +22,7 @@ class Graph:
     def goEast(self):
         if (self.currentRoom.east != None):
             self.setCurrentRoom(self.currentRoom.east)
-            print("* You move through the door to the East.")
+            print("\n* You move through the door to the East.")
             self.printStatus(self.currentRoom)
         else:
             print("There is no door to the East.")
@@ -30,7 +30,7 @@ class Graph:
     def goSouth(self):
         if (self.currentRoom.south != None):
             self.setCurrentRoom(self.currentRoom.south)
-            print("* You move through the door to the South.")
+            print("\n* You move through the door to the South.")
             self.printStatus(self.currentRoom)
         else:
             print("There is no door to the South.")
@@ -38,7 +38,7 @@ class Graph:
     def goWest(self):
         if (self.currentRoom.west != None):
             self.setCurrentRoom(self.currentRoom.west)
-            print("* You move through the door to the West.")
+            print("\n* You move through the door to the West.")
             self.printStatus(self.currentRoom)
         else:
             print("There is no door to the West.")
@@ -59,11 +59,11 @@ class Graph:
 
         # Format a string to return
         if (len(directions) == 1):
-            options = "There is a door to the " + directions[0] + "."
+            options = "\nThere is a door to the " + directions[0] + "."
         if (len(directions) == 2):
-            options = "There are doors to the " + directions[0] + " and " + directions[1] + "."
+            options = "\nThere are doors to the " + directions[0] + " and " + directions[1] + "."
         if (len(directions) == 3):
-            options = "There are doors to the " + directions[0] + ", " + directions[1] + ", and " + directions[2] + "."
+            options = "\nThere are doors to the " + directions[0] + ", " + directions[1] + ", and " + directions[2] + "."
         return options
 
 
