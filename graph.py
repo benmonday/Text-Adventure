@@ -42,6 +42,10 @@ class Graph:
             self.printStatus(self.currentRoom)
         else:
             print("There is no door to the West.")
+
+    def kickedEast(self):
+        self.setCurrentRoom(self.currentRoom.east)
+        print("* You feel a sudden force hit your chest as you are thrown backwards out of the room.")
             
 
     def printStatus(self, room):

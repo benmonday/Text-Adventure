@@ -33,7 +33,7 @@ dungeonMap = Graph([room0, room1, room2, room3, room4, room5, room6, room7])
 complete0 = False
 complete1 = False
 complete2 = False
-complete3 = False
+seen3 = False
 complete4 = False
 complete5 = False
 complete6 = False
@@ -52,6 +52,11 @@ while (gamePlaying):
             print("* Suddenly you feel a vibration on your wrist. You bring your wrist towards your face and notice a watch with very faintly glowing text.")
             input("...")
             print(colored("Welcome.", "green"))
+            input("...")
+            print(colored("This watch will be your guide through this dark cavern. It will tell you where doors are located, and nothing more.", "green"))
+            input("...")
+            print(colored("Good luck.", "green"))
+            print(colored("Move between rooms by typing the cardinal direction you wish to go in. You can also type just the first letter.)", "yellow"))
             complete0 = True
 
     # Room 1
@@ -64,7 +69,7 @@ while (gamePlaying):
 
     # Room 2
     if (dungeonMap.currentRoom.name == "room2"):
-        if (complete2 and complete3):
+        if (complete2 and hasKey):
             print("* You can faintly hear the two-fingered fiend to the West mumbling to itself.")
         elif (complete2):
             print("* You can hear an ominous snarling noise accompanied by the occasional jangle of a keychain coming from the West.")
@@ -74,7 +79,71 @@ while (gamePlaying):
 
     # Room 3
     if (dungeonMap.currentRoom.name == "room3"):
-        print("This is room 3.")
+        if (hasKey):
+            print(colored("What more do you want from me? Get out of here.", "red"))
+        else:
+            print("* Inside the room are three pairs of glowing, pure white eyes. The glow faintly illuminates a face, but not enough to make out any details. The beast notices your presence, and speaks to you.")
+            input("...")
+            if (seen3):
+                print(colored("Back again? If you wish to lose to me once again, go ahead!", "red"))
+                input("...")
+            else:
+                seen3 = True
+                print(colored("Hello, trapped one. Here to take my key I assume?", "red"))
+                input("...")
+                print(colored("I won't be giving it up easy. If you want this key, you'll have to beat me in a little game of rock, paper, scissors!", "red"))
+                input("...")
+            print(colored("We go on shoot. Ready? Rock, paper, scissors, SHOOT!", "red"))
+            RPS = input("* What will you play?:  ")
+            if (RPS.lower() == "rock"):
+                print(colored("Heh. Rock. I threw paper. Sorry. Better luck text time.", "red"))
+                if (complete6):
+                    input("...")
+                    print("* You recall the message you saw on the tablet. You know you couldn't have lost.")
+                    input("...")
+                    yorn = input("* Will you confront the beast? (Y/N):  ")
+                    if (yorn.lower() == "y" or yorn.lower == "yes"):
+                        print("* You tell the monster that he's lying, and that you know you won the game.")
+                        input("...")
+                        print(colored("Is that so? In that case, what did I throw?", "red"))
+                        input("...")
+                        RPS2 = input("* Did the monster throw rock, paper, or scissors?:  ")
+                        if (RPS2.lower() == "rock"):
+                            print(colored("Whatever. Then we tied. Better luck next time!", "red"))
+                            dungeonMap.kickedEast()
+                        elif (RPS2.lower() == "paper"):
+                            print(colored("Of course! That's what I already said! Better luck next time!", "red"))
+                            dungeonMap.kickedEast()
+                        elif (RPS2.lower() == "scissors"):
+                            print(colored("How... I-I don't know what you mean. How do you know I threw scissors?", "red"))
+                            input("...")
+                            answer = input("* How do you know the monster threw scissors?:  ")
+                            if (("two finger" in answer) or ("2 finger" in answer)):
+                                print(colored("You weren't supposed to be able to see! How did you possibly know that? Whatever, I care not. Take the key and go.", "red"))
+                                input("...")
+                                print("* You open your hand and extend it towards the beast. A moment later you feel a cold metal object placed in your palm. You grip the key, turn around, and leave the room.")
+                                hasKey = True
+                                dungeonMap.goEast()
+                            else:
+                                print(colored("As I expected. You have no proof. Get out of here.", "red"))
+                                dungeonMap.kickedEast()
+                        else:
+                            print(colored("Ha! That isn't an option. Sorry. Better luck next time!", "red"))
+                            dungeonMap.kickedEast
+                    elif (yorn.lower() == "n" or yorn.lower() == "no"):
+                        dungeonMap.kickedEast()
+                else:
+                    dungeonMap.kickedEast()
+            elif (RPS.lower() == "paper"):
+                print(colored("Heh. Paper. I threw scissors. Sorry. Better luck next time!", "red"))
+                dungeonMap.kickedEast()
+            elif (RPS.lower() == "scissors"):
+                print(colored("Heh. Scissors. I threw Rock. Sorry. Better luck next time!", "red"))
+                dungeonMap.kickedEast()
+            else:
+                print(colored("Ha! That isn't an option. Sorry. Better luck next time!", "red"))
+                dungeonMap.kickedEast()
+
 
     # Room 4
     if (dungeonMap.currentRoom.name == "room4"):
@@ -98,7 +167,7 @@ while (gamePlaying):
 
     # Room 6
     if (dungeonMap.currentRoom.name == "room6"):
-        if (complete6 and complete3):
+        if (complete6 and hasKey):
             print("* This is where you found the tablet that guided you to defeat the beast and retrieve the key.")
         elif (complete6):
             print("* This is where you found the mysterious tablet with a description of a horrible beast that only has two fingers and cannot make a fist.")
@@ -110,7 +179,7 @@ while (gamePlaying):
             input("...")
             print(colored("The beast will make you play a game to receive the key, but it does not play fair. Even if you win, it will insist you have lost, as it knows you cannot see.", "magenta"))
             input("...")
-            print(colored("To get the key, you must expose it's lie. The beast cannot make a fist and only has two fingers. Use this information to claim the key and escape. - M", "magenta"))
+            print(colored("To get the key, you must expose its lie. The beast cannot make a fist and only has two fingers. Use this information to claim the key and escape. - M", "magenta"))
             input("...")
             print("* The screen shuts off and you are engulfed in darkness again.")
             complete6 = True
@@ -135,7 +204,7 @@ while (gamePlaying):
     elif (direction.lower() == "north" or direction.lower() == "w"):
         dungeonMap.goWest()
     else:
-        print(colored("Invalid Input", "red"))
+        print(colored("Invalid Input. Please type 'North', 'East', 'South', or 'West'.", "yellow"))
 
 print("you reached the end of the game")
     
