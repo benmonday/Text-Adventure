@@ -82,7 +82,7 @@ while (gamePlaying):
         if (hasKey):
             print(colored("What more do you want from me? Get out of here.", "red"))
         else:
-            print("* Inside the room are three pairs of glowing, pure white eyes. The glow faintly illuminates a face, but not enough to make out any details. The beast notices your presence, and speaks to you.")
+            print("* Inside the room are three pairs of glowing, pure white eyes. The glow faintly illuminates a face, but not enough to make out any details. The beast notices your presence, and speaks.")
             input("...")
             if (seen3):
                 print(colored("Back again? If you wish to lose to me once again, go ahead!", "red"))
@@ -129,8 +129,11 @@ while (gamePlaying):
                                 dungeonMap.kickedEast()
                         else:
                             print(colored("Ha! That isn't an option. Sorry. Better luck next time!", "red"))
-                            dungeonMap.kickedEast
+                            dungeonMap.kickedEast()
                     elif (yorn.lower() == "n" or yorn.lower() == "no"):
+                        dungeonMap.kickedEast()
+                    else:
+                        print(colored("Get out of here already!", "red"))
                         dungeonMap.kickedEast()
                 else:
                     dungeonMap.kickedEast()
@@ -186,7 +189,6 @@ while (gamePlaying):
     # Room 7
     if (dungeonMap.currentRoom.name == "room7"):
         if (hasKey):
-            print("* With the key in hand you approach the door. You insert the key into the lock and pull open the door. You step through.")
             gamePlaying = False
             break
         else:
@@ -206,5 +208,11 @@ while (gamePlaying):
     else:
         print(colored("Invalid Input. Please type 'North', 'East', 'South', or 'West'.", "yellow"))
 
-print("you reached the end of the game")
+print("* With the key in hand you approach the door. You insert the key into the lock and pull open the door. The light is blinding, but you step through.")
+input("...")
+print("* You can't see, but you can feel the sun beating down on you and the chriping of birds.")
+input("...")
+print("You made it out.")
+input("...")
+print(colored("THE END", "blue"))
     
