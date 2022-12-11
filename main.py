@@ -56,7 +56,7 @@ while (gamePlaying):
             print(colored("This watch will be your guide through this dark cavern. It will tell you where doors are located, and nothing more.", "green"))
             input("...")
             print(colored("Good luck.", "green"))
-            print(colored("Move between rooms by typing the cardinal direction you wish to go in. You can also type just the first letter.)", "yellow"))
+            print(colored("Move between rooms by typing the cardinal direction you wish to go in. You can also type just the first letter.", "yellow"))
             complete0 = True
 
     # Room 1
